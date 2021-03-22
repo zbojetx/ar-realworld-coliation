@@ -21,13 +21,15 @@
             init: function () {
                 tampilPesan('ar-logic running')
             },
-            tick: function(){
+            tick: function () {
                 let cam = document.querySelector("#cam")
-                if(!cam) {return;}
+                if (!cam) { return; }
                 tampilPesan('cam detected')
                 let tumbukan = cam.components.raycaster.getIntersection(this.el);
-                if(!tumbukan) {return;}
+                if (!tumbukan) { return; }
                 tampilPesan("ada tumbukan" + tumbukan.point.x.toFixed(2) + "" + tumbukan.point.z.toFixed(2))
+                let lingkaran = document.querySelector("#lingkran");
+                lingkaran.setAttribute('position', tumbukan.point);
             }
         })
     </script>
@@ -39,7 +41,7 @@
         <a-ring id="target" rotation="-90 0 0" radius-inner="0.01" radius-outer="0.02"></a-ring>
 
         <a-box color="red" scale="0.2 0.2 0.2">
-            </a-scane>
+    </a-scane>
 
 </body>
 
