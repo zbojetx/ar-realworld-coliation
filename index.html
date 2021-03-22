@@ -12,7 +12,7 @@
 
 <body>
     <script>
-        function tampilPesan(peasn) {
+        function tampilPesan(pesan) {
             let hud = document.querySelector("#hud")
             hud.setAttribute('value', pesan)
         }
@@ -37,10 +37,8 @@
         <a-camera id="cam" ar-raycaster raycaster="objects:none;">
             <a-text id="hud" value="example" position="0 -0.1 -0.25" align="center" wrap-count="800"></a-text>
         </a-camera>
-
         <a-ring id="target" rotation="-90 0 0" radius-inner="0.01" radius-outer="0.02"></a-ring>
-
-        <a-box color="red" scale="0.2 0.2 0.2">
+        <a-box color="red" scale="0.2 0.2 0.2" ></a-box>
     </a-scane>
 
 </body>
