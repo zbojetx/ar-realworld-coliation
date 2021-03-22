@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,33 +9,38 @@
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@master/dist/aframe-master.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/chenzlabs/aframe-ar@master/dist/aframe-ar.min.js"></script>
 </head>
+
 <body>
     <script>
-        AFRAME.registerComponent('ar-logic',{
-            init : function() {
-                let hud = document.querySelector("#hud")
-                hud.setAttribute('value', 'ar-logic running')
+        function tampilPesan(peasn) {
+            let hud = document.querySelector("#hud")
+            hud.setAttribute('value', pesan)
+        }
+
+        AFRAME.registerComponent('ar-logic', {
+            init: function () {
+                tampilPesan('ar-logic running')
+            },
+            tick: function(){
+                let cam = document.querySelector("#cam")
+                if(!cam) {return;}
+                tampilPesan('cam detected')
+                let tumbukan = cam.components.raycaster.getIntersection(this.el);
+                if(!tumbukan) {return;}
+                tampilPesan("ada tumbukan" + tumbukan.point.x.toFixed(2) + "" + tumbukan.point.z.toFixed(2))
             }
         })
     </script>
     <a-scene ar ar-logic>
-        <a-camera id="cam" ar-raycaster raycaster="objects:none;" >
-            <a-text 
-            id="hud" 
-            value="example" 
-            position="0 -0.1 -0.25" 
-            align="center" 
-            wrap-count="800"></a-text>
+        <a-camera id="cam" ar-raycaster raycaster="objects:none;">
+            <a-text id="hud" value="example" position="0 -0.1 -0.25" align="center" wrap-count="800"></a-text>
         </a-camera>
 
-        <a-ring 
-        id="target" 
-        rotation="-90 0 0" 
-        radius-inner="0.01" 
-        radius-outer="0.02"></a-ring>
+        <a-ring id="target" rotation="-90 0 0" radius-inner="0.01" radius-outer="0.02"></a-ring>
 
-        <a-box color="red" scale="0.2 0.2 0.2" >
-    </a-scane>
-    
+        <a-box color="red" scale="0.2 0.2 0.2">
+            </a-scane>
+
 </body>
+
 </html>
